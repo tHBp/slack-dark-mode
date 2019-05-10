@@ -1,0 +1,19 @@
+{
+  "name": "slack-dark-mode",
+  "version": "0.2.0",
+  "description": "Enable dark mode on Slack for Web",
+  "repository": "https://github.com/tHBp/slack-dark-mode.git",
+  "author": "tHBp <thehalfbloodprince.github@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "node build.js"
+  },
+  "devDependencies": {
+    "archiver": "^3.0.0",
+    "chrome-webstore-upload": "^0.2.2",
+    "clean-css": "^4.2.1",
+    "fs-extra": "^8.0.0",
+    "terser": "^3.17.0"
+  }
+}

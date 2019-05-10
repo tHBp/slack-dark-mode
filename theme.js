@@ -6,19 +6,33 @@ const applyDarkMode = () => {
       let s = document.createElement("style");
       s.type = "text/css";
       s.innerHTML = css;
-      s.setAttribute("isOverride", "true");
+      s.setAttribute("isSlackDarkMode", "true");
       document.head.appendChild(s);
    });
 }
 
-chrome.extension.onMessage.addListener(function (msg, sender, sendResponse) {
-   const element = document.querySelector("style[isOverride='true']");
-
+const togglePageState = () => {
+   const element = document.querySelector("style[isSlackDarkMode='true']");
    if (element) {
       element.parentNode.removeChild(element);
    } else {
       applyDarkMode();
    }
+   return !element;
+}
 
-   sendResponse(element ? "light" : "dark");
+chrome.extension.onMessage.addListener(function (msg, sender, sendResponse) {
+   const currentState = togglePageState();
+   sendResponse(currentState);
+   chrome.storage.sync.set({
+      isSlackDarkMode: currentState
+   });
 });
+
+chrome.extension.sendMessage({
+   type: "newTabOpened"
+});
+
+chrome.storage.sync.get(["isSlackDarkMode"], storage => storage.isSlackDarkMode ? (applyDarkMode(), chrome.extension.sendMessage({
+   type: "applyDarkMode"
+})) : null);
