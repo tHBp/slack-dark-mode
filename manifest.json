@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+    "name": "Slack Dark Mode",
+    "description": "Dark mode for Slack on Web",
+    "version": "0.0.1",
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_title": "Slack Dark Mode"
+    },
+    "permissions": [
+        "storage", "activeTab"
+    ],
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "content_scripts": [{
+        "matches": ["*://*.slack.com/*"],
+        "js": ["theme.js"]
+    }]
+}
