@@ -77,6 +77,14 @@ nav.p-channel_sidebar {
     color: var(--text);
 }
 
+.loading #loading-zone {
+    background-color: var(--background);
+}
+
+#loading_message p {
+    color: var(--text);
+}
+
 #team_menu,
 body:not(.loading) #team_menu:hover,
 body:not(.loading) #team_menu:active {

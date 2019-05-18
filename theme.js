@@ -1,4 +1,4 @@
-const cssPath = "https://raw.githubusercontent.com/tHBp/slack-dark-mode/master/override.css";
+const cssPath = chrome.runtime.getURL("override.css");
 let cssPromise = fetch(cssPath).then(response => response.text());
 
 const applyDarkMode = () => {
